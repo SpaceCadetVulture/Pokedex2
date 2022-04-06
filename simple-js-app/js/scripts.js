@@ -26,3 +26,5 @@ let repository = [
       type:['water','strength']
     }
   ];
+
+  if (pokemon.height)
