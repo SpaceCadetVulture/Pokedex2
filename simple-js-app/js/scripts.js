@@ -43,3 +43,47 @@ let repository = [
 
     i++;
   }
+
+
+let pokemonRepository= (function(){
+
+  let pokemonList = [
+    {
+    name: 'Pikachu',
+    height: 3,
+    type: ['thunder', 'grass']
+      },
+  {
+    name: 'Charmander',
+    height: 5,
+    type:['fire', 'flying']
+    },
+  {
+    name: 'Blastoise',
+    height: 20,
+    type:['water', 'strength']
+    }];
+
+  nameList.forEach(function(pokemonList) {
+  console.log(pokemonList);
+});
+
+
+function add(pokemon){
+        pokemonList.push(pokemon);
+    }
+
+
+    function getAll(){
+       return pokemonList;
+   }
+   return{
+           add:add,
+           getAll:getAll
+       }
+
+
+   })();
+
+   pokemonRepository.add({ name: 'Pikachu', height: 3, type: ['thunder', 'grass']});
+   console.log(pokemonRepository.getAll());
