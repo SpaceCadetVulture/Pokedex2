@@ -44,16 +44,15 @@ function add(pokemon){
 
 const pokemon = pokemonRepository.getAll()
 
-pokemons.forEach((element) => {
-  if (element.height > 5)
+pokemons.forEach(element => {
+  if (element.height > 5) {
+  document.write(element.name + ' (height: ' + element.height + ') ' + ' - ' + "Wow, that's big!");
+  document.write("<br>");
+  document.write("<br>")
+  } else {
+    document.write(element.name + ' (height: ' + element.height + ') ');
+    document.write("<br>");
+    document.write("<br>")
+  }
 });
-
-   document.write(repository[i].name + ' (height: ' + repository[i].height + ') ' + ' - ' + "Wow, that's big!");
-   document.write("<br>");
-   document.write("<br>")
-   }else {
-     document.write(repository[i].name + ' (height: ' + repository[i].height + ') ');
-       document.write("<br>");
-       document.write("<br>")
-
-  console.log(pokemons);
+console.log(pokemons);
