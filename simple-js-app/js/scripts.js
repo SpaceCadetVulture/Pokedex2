@@ -56,3 +56,13 @@ pokemons.forEach(element => {
   }
 });
 console.log(pokemons);
+
+pokemonRepository.getAll().forEach(function (pokemon) {
+  let pokemonList = document.querySelector(.'pokemon-list');
+  let listPokemon = document.createElement('li');
+  let button = document.createElement('button');
+  button.innerText ='pokemonList.name';
+  button.classList.add('button-class');
+  listPokemon.appendChild(button);
+  pokemonList.appendChild(listPokemon);
+});
