@@ -1,3 +1,5 @@
+(function() {
+  let modalContainer = document.querySelector('#modal-container');
 let pokemonRepository= (function(){
 
   let pokemonList = [];
@@ -27,8 +29,18 @@ let pokemonRepository= (function(){
    // Call the loadDetails() function from above, pass as parameter the Pokémon object.
    function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-        console.log(pokemon)
-    });
+     (function() {
+      function showModal(title, text) {
+
+    modalContainer.innerHTML = '';
+
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+        
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
   }
 
   // Add a LoadList() function as a return key that uses fetch to GET the complete list of Pokémon from here: https://pokeapi.co/api/v2/pokemon/
