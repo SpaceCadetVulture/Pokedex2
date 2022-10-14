@@ -1,0 +1,105 @@
+let pokemonRepository = (function() {
+  
+  let pokemon = [];
+
+  let modalContainer = document.querySelector('#modal-container');
+
+  // REST OF CODE
+  function showModal(title, text, img) {
+  
+    modalContainer.innerHTML = '';
+
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    // Add the new modal content
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
+
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+
+    let contentElement = document.createElement('p');
+    contentElement.innerText = text;
+
+    let imageElement = document.createElement("img");
+    imageElement.setAttribute("src", img);
+    imageElement.setAttribute("width", "304");
+    imageElement.setAttribute("height", "228");
+    imageElement.setAttribute("alt", "Pokedex");
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modal.appendChild(imageElement);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
+  }
+
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
+
+  modalContainer.addEventListener('click', (e) => {
+    // Since this is also triggered when clicking INSIDE the modal container,
+    // We only want to close if the user clicks directly on the overlay
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
+
+  function add(item) {
+    pokemon.push(item);
+  }
+
+  // return all users
+  function getAll() {
+    return pokemon;
+  }
+
+  // add a list of buttons to the array
+  function addListItem(item) {
+    let pokemonList = document.querySelector('.team-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = item.name;
+    button.classList.add('button-custom');
+    listItem.appendChild(button);
+    pokemonList.appendChild(listItem);
+
+    button.addEventListener('click', function() {
+      showDetails(item);
+    });
+  }
+
+  function showDetails(item) {
+   
+  }
+
+  // THE RETURN STATEMENT HERE
+  return {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem,
+  };
+
+})();
+
+pokemonRepository.add({ name: 'Pikachu1', height: 9, logo "Desktop/Pichu.png" });
+pokemonRepository.add({ name: 'Pikachu2', height: 3, logo: "Desktop/Pikachu.png" });
+pokemonRepository.add({ name: 'Pikachu3', height: 5, logo: "Desktop/Raichu.png" });
+
+
+pokemonRepository.getAll().forEach(function(item) {
+  pokemonRepository.addListItem(item);
+})
