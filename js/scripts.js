@@ -9,19 +9,24 @@ let pokemonRepository = (function() {
       pokemonList.push(pokemon)
   }
 
-  function addListItem(pokemon) {
-      let pokemonList = document.querySelector(".pokemon-list");
-      console.log(pokemonList)
-      let listItem = document.createElement("li");
-      let button = document.createElement("button");
-      button.innerText = pokemon.name;
-      button.classList.add("poke-button")
-      listItem.appendChild(button);
-      pokemonList.appendChild(listItem);
-      button.addEventListener('click', function () {
-          showDetails(pokemon)
-      });
-  }
+function addListItem(pokemon) {
+    const allPokemon = document.querySelector('.pokemon-list');
+    const listItem = document.createElement('li');
+    //listItem.classList.add('list-group-item')
+    const button = document.createElement('button');
+    //to enable the for each loop return each name of the pokemon characters do not put the pokemon.name in quotation marks
+    button.innerText = pokemon.name;
+    button.classList.add('button');
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#pokemon-modal')
+    button.classList.add('btn')
+    listItem.appendChild(button);
+    allPokemon.appendChild(listItem);
+    //listens to clicks on the pokemon buttons created and returns the information of the button
+    button.addEventListener('click', function(event) { // the event in the function can be any word but its best to stick with event
+      showDetails(pokemon); //event handler
+    });
+  };
 
   // Call the loadDetails() function from above, pass as parameter the Pokémon object.
   function showDetails(pokemon) {
