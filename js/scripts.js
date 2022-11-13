@@ -1,8 +1,8 @@
-let pokemonRepository = (function() {
-  let pokemonList = [];
+var pokemonRepository = (function() {
+  var pokemonList = [];
   console.log(pokemonList)
 
-  let apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  var apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   // Create function to add pokemon to pokemonList
   function add(pokemon) {
@@ -36,41 +36,40 @@ function addListItem(pokemon) {
   }
 
   // Implement the modal
-  function showModal(pokemon) {
-      let modalContainer = document.querySelector('#modal-container');
-      modalContainer.innerHTML = ' ';
-      let modal = document.createElement('div');
-      modal.classList.add('modal');
+  function showModal(item) {
+    let modalBody = $(".modal-body");
+    let modalTitle = $(".modal-title");
+    let modalHeader = $(".modal-header");
+    // let $modalContainer = $("#modal-container");
+    //clear existing content of the model
+    // modalHeader.empty();
+    modalTitle.empty();
+    modalBody.empty();
 
-      let closeButtonElement = document.createElement('button');
-      closeButtonElement.classList.add('.modal-close');
-      closeButtonElement.innerText = 'X';
-      closeButtonElement.addEventListener('click', hideModal);
+    //creating element for name in modal content
+    let nameElement = $("<h1>" + item.name + "</h1>");
+    // // creating img in modal content
+    let imageElementFront = $('<img class="modal-img" style="width:50%">');
+    imageElementFront.attr("src", item.imageUrlFront);
+    let imageElementBack = $('<img class="modal-img" style="width:50%">');
+    imageElementBack.attr("src", item.imageUrlBack);
+    // //creating element for height in modal content
+    let heightElement = $("<p>" + "height : " + item.height + "</p>");
+    // //creating element for weight in modal content
+    let weightElement = $("<p>" + "weight : " + item.weight + "</p>");
+    // //creating element for type in modal content
+    let typesElement = $("<p>" + "types : " + item.types + "</p>");
+    // //creating element for abilities in modal content
+    let abilitiesElement = $("<p>" + "abilities : " + item.abilities + "</p>");
 
-      let titleElement = document.createElement('h3');
-      titleElement.innerText = pokemon.name;
-
-      let modalContent = document.createElement('div');
-      modalContent.classList.add('modal-content');
-      let modalImage = document.createElement('div');
-      modalImage.classList.add('modal-image');
-      let image = document.createElement('img');
-      image.src = pokemon.imageUrl;
-
-
-      let contentElement = document.createElement('p');
-      contentElement.innerText = `Height : ${pokemon.height}`;
-
-      modal.appendChild(closeButtonElement);
-      modal.appendChild(titleElement);
-      modalImage.appendChild(image);
-      modalContent.appendChild(modalImage);
-      modalContent.appendChild(contentElement);
-      modal.appendChild(modalContent);
-      modalContainer.appendChild(modal);
-
-      modalContainer.classList.add('is-visible');
-    }
+    modalTitle.append(nameElement);
+    modalBody.append(imageElementFront);
+    modalBody.append(imageElementBack);
+    modalBody.append(heightElement);
+    modalBody.append(weightElement);
+    modalBody.append(typesElement);
+    modalBody.append(abilitiesElement);
+  }
 
     function hideModal() {
       let modalContainer = document.querySelector('#modal-container');
