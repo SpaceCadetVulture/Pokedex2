@@ -15,6 +15,12 @@
     height: auto;
     background-attachment: fixed;
  }
+header {
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
 
  .navbar {
     box-shadow: 0px 12px 9px rgb(38 113 155 / 50%);
